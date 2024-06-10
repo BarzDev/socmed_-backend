@@ -27,7 +27,7 @@ app.use("/posting", require("./routes/posting"));
 // Middleware
 app.use((err, req, res, next) => {
   if (err && err.message === "Unauthorized") {
-    res.status(401).json({ message: "Unauthorized need api key" });
+    res.status(401).send({ message: "Unauthorized need api key" });
   } else {
     next(err);
   }
