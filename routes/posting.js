@@ -35,11 +35,11 @@ router.post("/", async (req, res) => {
 
 // Endpoint to add a comment to an existing posting
 router.post("/comment/:id", async (req, res) => {
-  const { content, author } = req.body;
+  const { content, author, photo } = req.body;
   const postingId = req.params.id;
 
   try {
-    if (!content || !author) {
+    if (!content || !author || !photo) {
       res.status(404).json({ message: "missing property" });
     }
 
@@ -51,6 +51,7 @@ router.post("/comment/:id", async (req, res) => {
     const newComment = {
       content,
       author,
+      photo,
     };
 
     posting.comments.push(newComment);
